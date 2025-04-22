@@ -48,32 +48,39 @@ Additional Bonus:
         
 
         System.out.print("Pick a number between 1 and 5: ");
-// Start of try block: We put code that might cause exceptions here
+
         try {
             // This line could throw an InputMismatchException if user enters text
             int userChoice = mo.nextInt();
 
-            // This is normal code that runs if no exception occurred above
             if (userChoice >= 1 && userChoice <= 5) {
                 // userChoice - 1 converts user input (1-5) to array index (0-4)
-                System.out.println("Your quote might be: " + myFavoriteArabicQuotes[userChoice - 1]);
+                System.out.println("Your quote might be: " + myFavoriteArabicQuotes[userChoice -1]);
             } else {
-                // This handles valid number input that's out of our desired range
+
                 System.out.println("Sorry bro, that's an invalid number. Please pick between 1 and 5.");
+            }
+
+            System.out.print("Wanna see another quot you still don't understand? (yes/no): ");
+            mo.nextLine(); // consume leftover newline
+            String answer = mo.nextLine().trim().toLowerCase();
+
+            if (!answer.equals("yes")) {
+                boolean keepGoing = true;
+                System.out.println("Alright, ma'a salama!");
             }
 // First catch block: Catches a specific exception type
         } catch (InputMismatchException e) {
-            // This code runs ONLY if user entered text instead of a number
-            // The program jumps here directly when the exception happens, skipping the rest of the try block
+
             System.out.println("You entered text instead of a number. Please run the program again and enter a number.");
 
 // Second catch block: Catches any other exceptions not caught above
         } catch (Exception e) {
+
             // This is a "catch-all" for any unexpected exceptions
-            // e.getMessage() gives us details about what went wrong
             System.out.println("An unexpected error occurred: " + e.getMessage());
 
-// Finally block: This code always runs, whether there was an exception or not
+// Always runs, whether there was an exception or not
         } finally {
 
             mo.close();
